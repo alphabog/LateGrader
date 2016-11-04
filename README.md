@@ -1,2 +1,0 @@
-# LateGrader
-Late Grading Application
