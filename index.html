@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>LateGrader</title>
+        <link rel="stylesheet" type="text/css" href="LateGrader.css">
+        <script src="LateGrader.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <h2>Late Grade Calculator</h2>
+        <form id="input" name="input">
+            <center>
+            Quick Percentage (ex. enter: 9/10, returns: 90%)</center><br>
+            Percentage:
+            <input type="text" name="percent" id="percent" size="10">
+            <input type="button" value="Submit" onclick="getPercentInput(percent.value)">
+            <label id="percentrtn">0%</label>
+            <br><br><br>
+            <center>
+                Total Points Chart</center><br>
+            Total Points Possible:
+            <input type="text" name="totalpoints" id="totalpoints" size="5"><br>
+            Percent deduction per day:
+            <input type="text" name="ppd" id="ppd" size="5"> (5% default)<br><br>
+            <center><input type="button" value="Submit" onclick="getTotalInput(totalpoints.value)">
+            <input type="button" value="ClearAll" onclick="clearInput()"></center>
+        </form><br>
+        <center><div id="table">
+        </div></center>
+    </body>
+</html>
