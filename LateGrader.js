@@ -132,7 +132,7 @@ function doCalc(tot, full, day, per){
         return parseInt(tot);
     }
 
-    var val = parseInt(tot - (full*per)*day);
+    var val = parseFloat(tot - (full*per)*day).toFixed(2);
     if(val < 0){
         val = 0;
     }
