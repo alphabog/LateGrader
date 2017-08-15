@@ -81,7 +81,7 @@ function checkIfNum(val){
 
 function getTotalInput(txt){
     var input = parseInt(txt);
-    var perc = checkPercentage(input);
+    var perc = checkPercentage();
     if(isNaN(input)){
         sendAlert("Please enter a valid numeric value.", false);
         return false;
@@ -121,22 +121,25 @@ function generateTable(num, txt, dp){
 function doCalc(tot, full, day, per){
     if(day == 5){
         day = 4;
+    } else if(day == 0){
+        return parseInt(tot);
     }
-    var val = parseInt(tot - full*(per*day));
+
+    var val = parseInt(tot - (full*per)*day);
     if(val < 0){
         val = 0;
     }
     return val;
 }
 
-function checkPercentage(tot){
+function checkPercentage(){
     var percent = document.getElementById("ppd").value;
     percent = parseFloat(percent).toFixed(2);
     if(isNaN(percent)){
         return .05;
     }
     if(percent > 1){
-        percent = percent/tot;
+        percent = percent/100;
     }
     return percent;
 }
