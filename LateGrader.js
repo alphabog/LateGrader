@@ -5,6 +5,7 @@
  * Otherwise this software may be treated as a open source software.
  */
 
+//Calculate and return the quick percentage calculator value.
 function getPercentInput(txtval){
     var input;
     input = checkType(txtval);
@@ -15,6 +16,7 @@ function getPercentInput(txtval){
     return false;
 }
 
+//Clear all the input from the screen.
 function clearInput(){
     document.getElementById("percent").value = "";
     document.getElementById("totalpoints").value = "";
@@ -23,17 +25,19 @@ function clearInput(){
     document.getElementById("ppd").value = "";
 }
 
+//Alert function that allows for passing returns.
 function sendAlert(txt, rtn){
     window.alert(txt);
     clearInput();
     return rtn;
 }
 
+//Validator function
 function checkType(val){
-    if(val == ""){
+    if(val === ""){
         return 0;
     }
-    if(val.indexOf("/") != -1){
+    if(val.indexOf("/") !== -1){
         var tmp = val.split("/");
         for(var t = 0; t<tmp.length; t++){
             tmp[t] = parseFloat(tmp[t]);
@@ -43,7 +47,7 @@ function checkType(val){
         }
         var num = tmp[0];
         for(var f = 1; f<tmp.length; f++){
-            if(tmp[f] != 0){
+            if(tmp[f] !== 0){
                 num = num/tmp[f];
             }
             else{
@@ -52,7 +56,7 @@ function checkType(val){
         }
         return parseInt(num.toFixed(2)*100);
     }
-    else if(val.indexOf(".") != -1){
+    else if(val.indexOf(".") !== -1){
         val = parseFloat(val);
         if(checkIfNum(val)){
             return parseInt(val.toFixed(2)*100);
@@ -61,7 +65,7 @@ function checkType(val){
             return sendAlert("Please enter a valid numeric value.", 0);
         }
     }
-    else if(typeof parseInt(val) == "number"){
+    else if(typeof parseInt(val) === "number"){
         val = parseInt(val);
         return val;
     }
@@ -70,8 +74,9 @@ function checkType(val){
     }
 }
 
+//Validate is num.
 function checkIfNum(val){
-    if(typeof val == "number"){
+    if(typeof val === "number"){
         return true;
     }
     else{
@@ -79,6 +84,7 @@ function checkIfNum(val){
     }
 }
 
+//Controller for late table, validate input and return values.
 function getTotalInput(txt){
     var input = parseInt(txt);
     var perc = checkPercentage();
@@ -101,9 +107,9 @@ function getTotalInput(txt){
     }
 }
 
+//Generate the html to create the table of values.
 function generateTable(num, txt, dp){
     var html = txt;
-
     //create columns
     html += "<tr><th></th><th colspan=\"6\">Days Late</th></tr>";
     html += "<tr><th>Points</th><th>0</th><th>1</th><th>2</th>";
@@ -118,10 +124,11 @@ function generateTable(num, txt, dp){
     return html;
 }
 
+//Calculate the value based on the percent, amount of points total, days late, and total score.
 function doCalc(tot, full, day, per){
-    if(day == 5){
+    if(day === 5){
         day = 4;
-    } else if(day == 0){
+    } else if(day === 0){
         return parseInt(tot);
     }
 
@@ -132,6 +139,7 @@ function doCalc(tot, full, day, per){
     return val;
 }
 
+//Get the number for percent entered by user if exists and covert to a percent.
 function checkPercentage(){
     var percent = document.getElementById("ppd").value;
     percent = parseFloat(percent).toFixed(2);
